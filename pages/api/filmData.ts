@@ -8,13 +8,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<OMDB.Result>
 ) {
-  const q = await fetch(qs.stringifyUrl({
+  const url = qs.stringifyUrl({
     url: "http://www.omdbapi.com/",
     query: {
       ...req.query,
       apikey: process.env.OMDB_API_KEY
     }
-  }))
+  })
+  const q = await fetch(url)
   const data = await q.json()
   res.status(200).json(data)
 }
