@@ -11,6 +11,7 @@ const Home: NextPage = () => {
     { cinema: "Glasgow Film Theatre", location: "Glasgow", },
     { cinema: "Glasgow IMAX Science Museum", location: "Glasgow", },
     { cinema: "Vue St Enoch", location: "Glasgow", },
+    { cinema: "Grosvenor Picture Theatre", location: "Glasgow" },
     { cinema: "Odeon Luxe Glasgow Quay", location: "Glasgow", },
   ]
 
@@ -22,8 +23,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className='font-bold uppercase tracking-wide p-4 bg-gray-100'>
-        Things to do in Glasgow
+      <header className='font-bold uppercase tracking-wide p-4 bg-gray-100 text-2xl'>
+        Films in Glasgow
       </header>
 
       <main className='h-100 p-4 space-y-6 relative'>
