@@ -13,6 +13,7 @@ const Home: NextPage = () => {
     { cinema: "Vue St Enoch", location: "Glasgow", },
     { cinema: "Grosvenor Picture Theatre", location: "Glasgow" },
     { cinema: "Odeon Luxe Glasgow Quay", location: "Glasgow", },
+    { cinema: "Everyman", location: "Glasgow", },
   ]
 
   return (
