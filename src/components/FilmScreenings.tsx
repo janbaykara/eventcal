@@ -11,12 +11,12 @@ export const FilmScreenings = ({ date = new Date(), ...showTimesArgs }: ShowTime
   return !!showtimes.data ?
     !showtimes.data?.showtimes?.[0] ? (
       <section>
-        <div className="text-2xl text-gray-500">{showTimesArgs.cinema}</div>
+        <div className="text-2xl font-bold">{showTimesArgs.cinema}</div>
         <div>None found</div>
       </section>
     ) : (
       <section>
-        <h3 className="text-2xl text-gray-500 sticky top-0 bg-white backdrop-blur backdrop-filter bg-opacity-70">{showtimes.data.knowledge_graph.title}</h3>
+        <h3 className="text-2xl font-bold sticky top-[60px] pt-3 pb-2 backdrop-blur backdrop-filter bg-white bg-opacity-70">{showtimes.data.knowledge_graph.title}</h3>
         <div className="divide-y">
           {showtimes.data.showtimes.find(day => !!day.date && isSameDay(parse(day.date, "d MMM", new Date()), date))?.movies?.map(movie => (
             <article key={movie.link} className='py-3 last:pb-0 flex flex-row space-x-3 items-center'>
@@ -29,9 +29,9 @@ export const FilmScreenings = ({ date = new Date(), ...showTimesArgs }: ShowTime
                       <div className="text-gray-500 text-sm w-36">
                         {showing.type}
                       </div>
-                      <div className="space-x-2 flex flex-row">
+                      <div className="grid gap-2 grid-cols-4 md:grid-cols-8">
                         {showing.time.map(time => (
-                          <div key={time} className='px-2 py-1 border inline-block border-gray-300 rounded-md text-xs'>
+                          <div key={time} className='px-2 py-1 border border-gray-300 rounded-md text-xs'>
                             <a href={movie.link}>{time}</a>
                           </div>
                         ))}
