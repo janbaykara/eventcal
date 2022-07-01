@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { addDays, format } from 'date-fns';
 
 const Home: NextPage = () => {
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(addDays(new Date(), 2))
 
   const cinemas = [
     { cinema: "Glasgow Film Theatre", location: "Glasgow", },
@@ -28,9 +28,10 @@ const Home: NextPage = () => {
       </header>
 
       <main className='h-100 p-4 space-y-6 relative'>
-        <div className='flex flex-row space-x-1'>
+        <div className='flex flex-row space-x-1 items-center'>
+          Timings for&nbsp;
           <div className='bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-md px-2 py-1' onClick={() => setDate(addDays(date, -1))}>&larr;</div>
-          <div className='bg-gray-100 hover:bg-gray-200 rounded-md px-2 py-1'>{format(date, "d MMM")}</div>
+          <div className='bg-gray-100 rounded-md px-2 py-1 text-lg'>{format(date, "d MMM")}</div>
           <div className='bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-md px-2 py-1' onClick={() => setDate(addDays(date, 1))}>&rarr;</div>
         </div>
         <div className='space-y-6'>
