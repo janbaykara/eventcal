@@ -11,18 +11,16 @@ export const FilmScreenings = ({ date = new Date(), ...showTimesArgs }: ShowTime
   return !!showtimes.data ?
     !showtimes.data?.showtimes?.[0] ? (
       <section>
-        <div className="text-lg font-bold">{showTimesArgs.cinema}</div>
+        <div className="text-2xl text-gray-500">{showTimesArgs.cinema}</div>
         <div>None found</div>
       </section>
     ) : (
       <section>
-        <h3 className="text-lg font-bold sticky top-0 bg-white bg-opacity-70">{showtimes.data.knowledge_graph.title}</h3>
+        <h3 className="text-2xl text-gray-500 sticky top-0 bg-white backdrop-blur backdrop-filter bg-opacity-70">{showtimes.data.knowledge_graph.title}</h3>
         <div className="divide-y">
           {showtimes.data.showtimes.find(day => !!day.date && isSameDay(parse(day.date, "d MMM", new Date()), date))?.movies?.map(movie => (
-            <article key={movie.link} className='py-3 last:pb-0 flex flex-row'>
-              <div style={{ marginRight: 10 }}>
-                <FilmPoster t={movie.name} type="movie" />
-              </div>
+            <article key={movie.link} className='py-3 last:pb-0 flex flex-row space-x-3 items-center'>
+              <FilmPoster t={movie.name} type="movie" />
               <div>
                 <h4 className='pb-2'><a href={movie.link}>{movie.name}</a></h4>
                 <div className="space-y-2">
@@ -49,11 +47,6 @@ export const FilmScreenings = ({ date = new Date(), ...showTimesArgs }: ShowTime
     ) : <div>Loading showtimes for <b>{showTimesArgs.cinema}</b></div>
 }
 
-// export const busyness = ({ place }: { place: ShowTimes.Result['knowledge_graph'] }) => {
-//   return place.popular_times.graph_results.monday.find(day => day.time === "10 am")?.info
-// }
-
-
 function useShowtimes(showTimesArgs: ShowTimesArgs) {
   const url = qs.stringifyUrl({
     url: "/api/showtimes",
@@ -67,20 +60,16 @@ function useShowtimes(showTimesArgs: ShowTimesArgs) {
   return useSWR<ShowTimes.Result>(url, fetcher, {
     revalidateIfStale: false,
     // revalidateOnMount: false,
-    // revalidateOnReconnect: false,
-    // revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    revalidateOnFocus: false,
   }
   )
 }
 
 export const FilmPoster = (args: any) => {
   const movie = useMovie(args)
-  return <div className='bg-gray-100 rounded-md bg-cover bg-center' style={{
-    backgroundImage: `url(${movie.data?.Poster})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    width: 80,
-    height: 120
+  return <div className='bg-gray-100 rounded-md bg-cover bg-center w-[60px] h-[90px]' style={{
+    backgroundImage: `url(${movie.data?.Poster})`
   }} />
 }
 
