@@ -3,8 +3,7 @@
 A simple tool that lists interesting stuff near you, in near time.
 
 - [ ] Enter a location and a page will be created for it, publicly visible to anyone
-- [ ] View local cinema showtimes (via https://serpapi.com/showtimes-results)
-  - [ ] For now, to avoid going over the paid 100-queries-per-month rate, NextJS caches this page
+- [X] View local cinema showtimes (via https://serpapi.com/showtimes-results)
 - [ ] Could in time also collect other events (taking inspiration from https://some-gallery-thing.toby.codes/london / https://github.com/tlwr/some-gallery-thing/blob/main/src/worker/generate-events-json.ts)
 # NextJS docs
 
