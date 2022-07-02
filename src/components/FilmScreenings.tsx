@@ -7,12 +7,13 @@ import { OMDB } from "../../pages/api/filmData";
 
 export const FilmScreenings = ({ date = new Date(), ...showTimesArgs }: ShowTimesArgs & { date?: Date }) => {
   const showtimes = useShowtimes(showTimesArgs)
+  const moviesForThisDate = showtimes.data?.showtimes?.find(day => !!day.date && isSameDay(parse(day.date, "d MMM", new Date()), date))?.movies
 
   return !!showtimes.data ?
-    !showtimes.data?.showtimes?.[0] ? (
+    !moviesForThisDate || !moviesForThisDate?.length ? (
       <section>
         <div className="text-2xl font-bold">{showTimesArgs.cinema}</div>
-        <div>None found</div>
+        <div>Nothing found</div>
       </section>
     ) : (
       <section>
@@ -22,7 +23,7 @@ export const FilmScreenings = ({ date = new Date(), ...showTimesArgs }: ShowTime
           </a>
         </h3>
         <div className="divide-y">
-          {showtimes.data.showtimes.find(day => !!day.date && isSameDay(parse(day.date, "d MMM", new Date()), date))?.movies?.map(movie => (
+          {moviesForThisDate.map(movie => (
             <article key={movie.link} className='py-3 last:pb-0 flex flex-row space-x-3 items-center'>
               <FilmPoster t={movie.name} type="movie" />
               <div>
