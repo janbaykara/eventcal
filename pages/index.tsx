@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           <div className='flex flex-row space-x-1 items-center text-right'>
             Showing&nbsp;
             <div className='bg-white hover:bg-gray-200 cursor-pointer rounded-md px-2 py-1' onClick={() => setDate(addDays(date, -1))}>&larr;</div>
-            <div className='bg-white rounded-md px-2 py-1 text-lg font-bold'>{format(date, "d MMM")}</div>
+            <div className='bg-white rounded-md px-2 py-1 text-lg font-bold'>{format(date, "E d MMM")}</div>
             <div className='bg-white hover:bg-gray-200 cursor-pointer rounded-md px-2 py-1' onClick={() => setDate(addDays(date, 1))}>&rarr;</div>
           </div>
         </div>
