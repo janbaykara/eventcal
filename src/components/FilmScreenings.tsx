@@ -16,7 +16,11 @@ export const FilmScreenings = ({ date = new Date(), ...showTimesArgs }: ShowTime
       </section>
     ) : (
       <section>
-        <h3 className="text-2xl font-bold sticky top-[60px] pt-3 pb-2 backdrop-blur backdrop-filter bg-white bg-opacity-70">{showtimes.data.knowledge_graph.title}</h3>
+        <h3 className="text-2xl font-bold sticky top-[60px] pt-3 pb-2 backdrop-blur backdrop-filter bg-white bg-opacity-70">
+          <a href={showtimes.data.knowledge_graph.website}>
+            {showtimes.data.knowledge_graph.title}
+          </a>
+        </h3>
         <div className="divide-y">
           {showtimes.data.showtimes.find(day => !!day.date && isSameDay(parse(day.date, "d MMM", new Date()), date))?.movies?.map(movie => (
             <article key={movie.link} className='py-3 last:pb-0 flex flex-row space-x-3 items-center'>
